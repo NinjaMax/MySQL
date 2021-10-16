@@ -1,4 +1,5 @@
-new Vue({
+ import Vue from 'vue';
+ new Vue({
     el: '#app',
     data() {
       return {
@@ -6,7 +7,7 @@ new Vue({
         show: true,
         todoTitle: '',
         todos: []
-      }
+      };
     },
     created() {
         fetch('/app/todo', {
@@ -19,7 +20,7 @@ new Vue({
     },
     methods: {
       addTodo() {
-        const title = this.todoTitle.trim()
+        const title = this.todoTitle.trim();
         if (!title) {
           return;
         }
@@ -41,7 +42,7 @@ new Vue({
               method: 'delete'
           })
           .then(() =>{
-            this.todos = this.todos.filter(t => t.id !== id)
+            this.todos = this.todos.filter(t => t.id !== id);
           }).catch( e => console.log(e));
         }
     },
@@ -55,11 +56,11 @@ new Vue({
         .then(({todo})=> {
             const idx = this.todos.findIndex(t => t.id === todo.id);
             this.todos[idx].updateAt = todo.updateAt;
-        })
+        });
     },
     filters: {
       capitalize(value) {
-        return value.toString().charAt(0).toUpperCase() + value.slice(1)
+        return value.toString().charAt(0).toUpperCase() + value.slice(1);
       },
       date(value, withTime) {
           const options = {
@@ -73,7 +74,7 @@ new Vue({
               options.second = '2-digit';
 
           }
-       
+
         return new Intl.DateTimeFormat('ru-RU', options)
         .format(new Date(value));
       }
