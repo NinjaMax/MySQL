@@ -1,4 +1,4 @@
- import Vue from 'vue';
+ //const {Vue} = require('Vue');
  new Vue({
     el: '#app',
     data() {
@@ -35,7 +35,7 @@
         this.todos.push(todo);
          this.todoTitle = '';
        })
-       .catch(e =>console.log(e));
+       .catch( e => console.log(e));
       },
       removeTodo(id) {
           fetch('/api/todo' + id, {
